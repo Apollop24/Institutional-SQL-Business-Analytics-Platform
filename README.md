@@ -21,7 +21,7 @@
 
 ---
 
-## 📋 Overview
+## Overview
 
 This repository contains a **single, deployable SQL Server database** — `FinancePortfolio` — that
 replicates the analytical infrastructure used by investment banks, asset managers, and corporate
@@ -38,19 +38,19 @@ for complete transparency — including the bugs that were found and the exact f
 <tr>
 <td width="33%" align="center">
 
-### 🗄️ 13
+### 13
 **Schemas**
 
 </td>
 <td width="33%" align="center">
 
-### 📊 37
+### 37
 **Tables**
 
 </td>
 <td width="33%" align="center">
 
-### 👁️ 31
+### 31
 **Views**
 
 </td>
@@ -58,19 +58,19 @@ for complete transparency — including the bugs that were found and the exact f
 <tr>
 <td align="center">
 
-### ⚙️ 11
+### 11
 **Stored Procedures**
 
 </td>
 <td align="center">
 
-### 🔧 2
+### 2
 **Table-Valued Functions**
 
 </td>
 <td align="center">
 
-### 🔔 1
+### 1
 **Audit Trigger**
 
 </td>
@@ -79,7 +79,7 @@ for complete transparency — including the bugs that were found and the exact f
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### Prerequisites
 - SQL Server 2017 Express, Standard, or Enterprise (or Azure SQL Database)
@@ -103,7 +103,7 @@ Or run the six modules individually if you prefer granular control / staged debu
 :r sql/modules/06_governance_security_capstone.sql
 ```
 
-> ⏱️ **First run takes ~3–5 minutes** — the `dw.dim_date` calendar table is populated row-by-row
+> **First run takes ~3–5 minutes** — the `dw.dim_date` calendar table is populated row-by-row
 > for 2010–2030 (7,670 days) via a `WHILE` loop, which is the single slowest step in the deployment.
 
 ### Verify the deployment
@@ -118,7 +118,7 @@ EXEC governance.usp_run_dq_checks;
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
                          ┌─────────────────────────┐
@@ -182,7 +182,7 @@ EXEC governance.usp_run_dq_checks;
 
 ---
 
-## 🧩 The 12 Analytical Modules
+## The 12 Analytical Modules
 
 <details open>
 <summary><b>1️⃣ Enterprise Data Warehouse</b> — Star schema, SCD Type 2, computed columns</summary>
@@ -301,18 +301,18 @@ company per year.
 
 ---
 
-## 📈 Sample Output — Real Execution Results
+## Sample Output — Real Execution Results
 
 > All figures below are taken **verbatim** from [`output_samples/original_execution_output.rpt`](output_samples/original_execution_output.rpt) — a real SSMS execution against this exact codebase. Nothing here is simulated.
 
-### 🔍 Fraud Detection — Duplicate Payment Caught in Real Time
+### Fraud Detection — Duplicate Payment Caught in Real Time
 
 | Vendor | Transaction ID | Amount | Days Since Same | Occurrences (30d) | Risk Level | Potential Loss |
 |---|---|---|---|---|---|---|
 | Dell Technologies | TXN-2023-005 | $45,000 | 4 | 3 | 🔴 **CRITICAL** | **$90,000** |
 | Dell Technologies | TXN-2023-004 | $45,000 | 45 | 2 | 🟡 LOW | $45,000 |
 
-### 🚩 Expense Anomaly Scoring — Top Flagged Transactions
+### Expense Anomaly Scoring — Top Flagged Transactions
 
 | Transaction | Vendor | Amount | Created By | Approved By | Self-Approved? | Fraud Score | Priority |
 |---|---|---|---|---|---|---|---|
@@ -321,11 +321,11 @@ company per year.
 | TXN-2023-010 | Premium Vendor LLC | $75,000 | mturner | mturner | ✅ Yes | **55** | 🟠 HIGH — Supervisor Alert |
 | TXN-2023-006/7/8 | Shadow Analytics Inc | ~$4,990 | rcooper | *(none)* | — | **30** | 🟡 MEDIUM — Sample Review |
 
-> 💡 Note the `$4,990 / $4,985 / $4,995` series from "Shadow Analytics Inc" — three invoices
+>  Note the `$4,990 / $4,985 / $4,995` series from "Shadow Analytics Inc" — three invoices
 > deliberately split just under the $5,000 approval threshold over three consecutive days.
 > The scoring engine flagged all three automatically.
 
-### 🏦 Vendor Risk Scorecard
+###  Vendor Risk Scorecard
 
 | Vendor | Duplicate Flags | Potential Duplicate Loss | Avg Fraud Score | Flagged Txns | Risk Score | Tier |
 |---|---|---|---|---|---|---|
@@ -336,7 +336,7 @@ company per year.
 | Shadow Analytics Inc | 0 | $0 | 30.0 | 3 | 30.0 | 🟠 MEDIUM |
 | Office Depot | 0 | $0 | 25.0 | 2 | 22.5 | 🟢 LOW |
 
-### 💳 Credit Risk — Basel III Expected Loss Roll-Forward (by Rating)
+### Credit Risk — Basel III Expected Loss Roll-Forward (by Rating)
 
 | Rating | Facility Count | Commitment ($M) | Outstanding ($M) | Wtd Avg PD% | Wtd Avg LGD% | Expected Loss ($M) | EL Rate % | Stage 2 | Stage 1 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -350,7 +350,7 @@ company per year.
 > The B-rated facility (Mombasa Grain Traders, 92 days past due) correctly drives the highest
 > EL rate at 12.1% — exactly the risk-sensitivity Basel III is designed to produce.
 
-### 📦 Final Platform Object Inventory
+### Final Platform Object Inventory
 
 | Object Type | Count |
 |---|---|
@@ -361,7 +361,7 @@ company per year.
 | Triggers | 1 |
 | Schemas | 13 |
 
-### 📊 Seeded Data Volume
+### Seeded Data Volume
 
 | Module | Component | Rows |
 |---|---|---|
@@ -383,7 +383,7 @@ company per year.
 
 ---
 
-## 🐛 Bugs Found & Fixed During QA
+##  Bugs Found & Fixed During QA
 
 This project was built, executed, debugged, and corrected through multiple real SSMS test runs.
 In the interest of complete transparency, every genuine bug discovered along the way — and the
@@ -409,7 +409,7 @@ exact fix applied — is documented below rather than silently patched.
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 sql-business-analytics-portfolio/
@@ -437,7 +437,7 @@ sql-business-analytics-portfolio/
 
 ---
 
-## 🎓 SQL Techniques Demonstrated
+## SQL Techniques Demonstrated
 
 <table>
 <tr><th>Category</th><th>Techniques</th></tr>
@@ -454,7 +454,7 @@ sql-business-analytics-portfolio/
 
 ---
 
-## 📚 Documentation
+##  Documentation
 
 | Document | Description |
 |---|---|
@@ -465,7 +465,7 @@ sql-business-analytics-portfolio/
 
 ---
 
-## 🗺️ Data Sources
+## Data Sources
 
 | Source | Used For |
 |---|---|
@@ -477,7 +477,7 @@ sql-business-analytics-portfolio/
 
 ---
 
-## 📄 License
+## License
 
 This project is released under the [MIT License](LICENSE) — free to use, modify, and learn from.
 
@@ -485,7 +485,7 @@ This project is released under the [MIT License](LICENSE) — free to use, modif
 
 <div align="center">
 
-**Built and maintained by [](LINK)**
+**Built and maintained by Philip K **
 
 
 
