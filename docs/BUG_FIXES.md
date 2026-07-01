@@ -1,4 +1,4 @@
-# 🐛 Bug Fixes — Detailed Root-Cause Analysis
+# Bug Fixes — Detailed Root-Cause Analysis
 
 This document expands on the [summary table in the README](../README.md#-bugs-found--fixed-during-qa)
 with full root-cause analysis, the exact error message produced by SQL Server, and the
@@ -127,16 +127,16 @@ table. All 10 rules failed identically because all 10 had the same structural mi
 
 | Rule | Result |
 |---|---|
-| IS_Revenue_Not_Null | ✅ PASS (0 violations) |
-| IS_No_Negative_Revenue | ✅ PASS (0 violations) |
-| BS_Balance_Sheet_Equation | ❌ **FAIL (1 violation — AAPL FY2020)** |
-| SP_No_Zero_Price | ✅ PASS (0 violations) |
-| SP_No_Future_Dates | ✅ PASS (0 violations) |
-| COMP_Unique_Active_Ticker | ✅ PASS (0 violations) |
-| CR_PD_In_Range | ✅ PASS (0 violations) |
-| CR_LGD_In_Range | ✅ PASS (0 violations) |
-| ESG_Renewable_Pct_Range | ✅ PASS (0 violations) |
-| FPA_Actuals_No_Future | ✅ PASS (0 violations) |
+| IS_Revenue_Not_Null | PASS (0 violations) |
+| IS_No_Negative_Revenue | PASS (0 violations) |
+| BS_Balance_Sheet_Equation | **FAIL (1 violation — AAPL FY2020)** |
+| SP_No_Zero_Price | PASS (0 violations) |
+| SP_No_Future_Dates | PASS (0 violations) |
+| COMP_Unique_Active_Ticker | PASS (0 violations) |
+| CR_PD_In_Range | PASS (0 violations) |
+| CR_LGD_In_Range | PASS (0 violations) |
+| ESG_Renewable_Pct_Range | PASS (0 violations) |
+| FPA_Actuals_No_Future | PASS (0 violations) |
 
 **Final tally: 9 PASS, 1 FAIL** — see Bug 10 below for the balance sheet finding.
 
